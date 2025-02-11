@@ -15,7 +15,7 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: "http://localhost:3000", // Your frontend URL
+    origin: "https://covercraft.vercel.app/", // Your frontend URL "http://localhost:3000"
     credentials: true,
   })
 );
