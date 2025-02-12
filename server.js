@@ -12,9 +12,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-
-
-
 // app.use(
 //   cors({
 //     origin: "https://covercraft.vercel.app/", // Your frontend URL "http://localhost:3000"
@@ -24,20 +21,26 @@ app.use(express.json());
 
 // Define allowed origins
 const allowedOrigins = [
-  "http://localhost:3000",  // Allow for local development
-  "https://covercraft.vercel.app",  // Allow for production
-];
+  "http://localhost:3000", // Allow for local development
+  "https://covercraft.vercel.app", // Allow for production
+]
 
-app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true, // Allow credentials (cookies, authorization headers, etc.)
-}));
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      console.log("Incoming request from origin:", origin)
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true)
+      } else {
+        console.log("Origin not allowed:", origin)
+        callback(new Error("Not allowed by CORS"))
+      }
+    },
+    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+  }),
+)
+
+console.log("CORS configuration set up with allowed origins:", allowedOrigins)
 
 // MongoDB Connection
 mongoose
