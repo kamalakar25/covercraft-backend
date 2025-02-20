@@ -5,15 +5,21 @@ const cors = require("cors");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
+<<<<<<< HEAD
 var nodemailer = require("nodemailer");
+=======
+>>>>>>> e4c94818bfe2d1ca544f9e7741924089a88365fd
 
 const app = express();
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+<<<<<<< HEAD
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
+=======
+>>>>>>> e4c94818bfe2d1ca544f9e7741924089a88365fd
 
 // app.use(
 //   cors({
@@ -22,6 +28,7 @@ app.use(express.urlencoded({ extended: false }));
 //   })
 // );
 
+<<<<<<< HEAD
 
 
 // // Define allowed origins
@@ -30,10 +37,18 @@ app.use(express.urlencoded({ extended: false }));
 //   "http://localhost:3001", // Allow for local development
 //   "https://covercraft.vercel.app", // Allow for production
 // ];
+=======
+// // Define allowed origins
+// const allowedOrigins = [
+//   "http://localhost:3000", // Allow for local development
+//   "https://covercraft.vercel.app", // Allow for production
+// ]
+>>>>>>> e4c94818bfe2d1ca544f9e7741924089a88365fd
 
 // app.use(
 //   cors({
 //     origin: (origin, callback) => {
+<<<<<<< HEAD
 //       console.log("Incoming request from origin:", origin);
 //       if (!origin || allowedOrigins.includes(origin)) {
 //         callback(null, true);
@@ -47,6 +62,21 @@ app.use(express.urlencoded({ extended: false }));
 // );
 
 // console.log("CORS configuration set up with allowed origins:", allowedOrigins);
+=======
+//       console.log("Incoming request from origin:", origin)
+//       if (!origin || allowedOrigins.includes(origin)) {
+//         callback(null, true)
+//       } else {
+//         console.log("Origin not allowed:", origin)
+//         callback(new Error("Not allowed by CORS"))
+//       }
+//     },
+//     credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+//   }),
+// )
+
+// console.log("CORS configuration set up with allowed origins:", allowedOrigins)
+>>>>>>> e4c94818bfe2d1ca544f9e7741924089a88365fd
 
 // MongoDB Connection
 mongoose
@@ -312,10 +342,17 @@ app.post("/api/cart/add", async (req, res) => {
 });
 
 // Get cart
+<<<<<<< HEAD
 app.get("/api/cart/:userId", async (req, res) => {
   try {
     const { userId } = req.params;
     const cart = await Cart.findOne({ userId }).populate("items.productId");
+=======
+app.get('/api/cart/:userId', async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const cart = await Cart.findOne({ userId }).populate('items.productId');
+>>>>>>> e4c94818bfe2d1ca544f9e7741924089a88365fd
     res.json(cart || { userId, items: [] });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -564,6 +601,7 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 
+<<<<<<< HEAD
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -654,3 +692,6 @@ app.post("api/reset-password/:id/:token", async (req, res) => {
 });
 
 
+=======
+console.log("Server is running and ready to handle orders and payments.");
+>>>>>>> e4c94818bfe2d1ca544f9e7741924089a88365fd
